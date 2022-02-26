@@ -49,7 +49,7 @@ def dashboard():
         return redirect("/")
     return render_template ("dashboard.html", 
     logged_in_user = User.getByID({"id": session["uuid"]}),
-    all_recipes = Recipe.readAll()
+    # all_recipes = Recipe.readAll()
     )
 
 

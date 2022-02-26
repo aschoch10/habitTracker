@@ -8,7 +8,7 @@ bcrypt = Bcrypt(app)
 
 class User:
 # to do create scema in mySQL workbench
-    schema = ("**SCHEMA NAME PLACEHOLDER**")
+    schema = ("habittracker_schema")
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
