@@ -25,3 +25,12 @@ class Habit:
         if len(results) < 1:
             return False
         return Habit(results[0])
+
+    @classmethod
+    def readAll(cls):
+        query = "SELECT * FROM habits;"
+        results = connectToMySQL(cls.schema).query_db(query)
+        recipes = []
+        for row in results:
+            recipes.append(Habit(row))
+        return recipes

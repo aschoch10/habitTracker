@@ -27,16 +27,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for recipe in all_recipes  %}
+                        {% for habit in all_habits  %}
                         <tr>
-                            <td>{{recipe.name}}</td>
-                            <td>{{recipe.description}}</td>
-                            <td>{{recipe.instructions}}</td>
+                            <td>{{habit.name}}</td>
+                            <td>{{habit.description}}</td>
+                            <td>{{habit.instructions}}</td>
                             <td>
-                                <a href="/recipes/{{   recipe.id  }}"><button class="btn btn-primary">View</button></a>
-                                {%  if logged_in_user.id == recipe.user.id  %}
-                                <a href="/recipes/{{  recipe.id  }}/edit"><button class="btn btn-warning">Edit</button></a>
-                                <a href="/recipes/{{  recipe.id  }}/destroy"><button class="btn btn-danger">Delete</button></a>
+                                <a href="/habits/{{   habit.id  }}"><button class="btn btn-primary">View</button></a>
+                                {%  if logged_in_user.id == habit.user.id  %}
+                                <a href="/habits/{{  habit.id  }}/edit"><button class="btn btn-warning">Edit</button></a>
+                                <a href="/habits/{{  habit.id  }}/destroy"><button class="btn btn-danger">Delete</button></a>
                             {% endif %}
                         </td>
                     </tr>
