@@ -30,7 +30,12 @@ class Habit:
     def readAll(cls):
         query = "SELECT * FROM habits;"
         results = connectToMySQL(cls.schema).query_db(query)
-        recipes = []
+        habits = []
         for row in results:
-            recipes.append(Habit(row))
-        return recipes
+            habits.append(Habit(row))
+        return habits
+
+    @classmethod
+    def create(cls, data):
+        query = "INSERT into habits (user_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
+        return connectToMySQL(cls.schema).query_db(query, data)

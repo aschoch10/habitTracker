@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, session, flash
 from flask_app import app
 from flask_app.models.user import User
+from flask_app.models.habit import Habit
 
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -49,7 +50,7 @@ def dashboard():
         return redirect("/")
     return render_template ("dashboard.html", 
     logged_in_user = User.getByID({"id": session["uuid"]}),
-    # all_recipes = Recipe.readAll()
+    all_habits = Habit.readAll()
     )
 
 
