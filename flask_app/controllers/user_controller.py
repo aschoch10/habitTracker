@@ -50,8 +50,14 @@ def dashboard():
         return redirect("/")
     return render_template ("dashboard.html", 
     logged_in_user = User.getByID({"id": session["uuid"]}),
-    all_habits = Habit.readAll()
+    # all_habits = Habit.readAll()
     )
+
+# only can acces user controller from html buttons
+# to do connect habit controller 
+@app.route("/test")
+def newHabit():
+    return render_template("test.html")
 
 
 

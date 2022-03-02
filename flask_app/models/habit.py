@@ -17,7 +17,7 @@ class Habit:
         self.updated_at = data['updated_at']
         self.recipes = []
 
-# to do create form and controller to route to this
+
     @classmethod
     def getById(cls, data):
         query = "SELECT * FROM habits WHERE email = %(id)s;"
@@ -25,6 +25,7 @@ class Habit:
         if len(results) < 1:
             return False
         return Habit(results[0])
+
 
     @classmethod
     def readAll(cls):
@@ -34,6 +35,7 @@ class Habit:
         for row in results:
             habits.append(Habit(row))
         return habits
+
 
     @classmethod
     def create(cls, data):
