@@ -1,4 +1,3 @@
-# to do code some more stuff I would imagine import re
 from flask import flash
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_bcrypt import Bcrypt
@@ -10,12 +9,11 @@ class Habit:
     schema = ("habittracker_schema")
     def __init__(self, data):
         self.id = data['id']
-        self.name = data['first_name']
+        self.name = data['name']
         self.description = data['description']
         self.streak_count = data['streak_count']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.recipes = []
 
 
     @classmethod
@@ -36,8 +34,25 @@ class Habit:
             habits.append(Habit(row))
         return habits
 
-
+# todo fix schema in workbench
     @classmethod
     def create(cls, data):
-        query = "INSERT into habits (user_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
+        query = "INSERT into habits (users_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
         return connectToMySQL(cls.schema).query_db(query, data)
+
+# todo add validations for form input
+    # @staticmethod
+    # def validate(post_data):
+    #     is_valid = True
+
+    #     if len(post_data['title']) <3:
+    #         flash("Title must be longer than 3 characters")
+    #         is_valid = False
+    #     if len(post_data['network']) < 3:
+    #         flash("Description must be longer than 3 characters")
+    #         is_valid = False
+    #     if len(post_data['description']) <3:
+    #         flash("Instructions must be longer than 3 characters")
+    #         is_valid = False
+
+    #     return is_valid

@@ -12,9 +12,9 @@
         <br>
         <div class="" style="text-align:center; margin-right: 20%; margin-left: 20%;">
             <h2>Welcome {{logged_in_user.first_name}} {{logged_in_user.last_name}}</h2>
-            <!-- this button doesn't work, but th e route looks right to me -->
+            <!-- this button doesn't work, is in habit controller -->
             <a href="/habits/new"><button class="btn btn-primary">New Habit</button></a>
-            <!-- this button only wokr sbecause test is in user controller -->
+            <!-- this button only works because test is in user controller -->
             <a href="/test"><button class="btn btn-primary">Test</button></a>
             <!-- this button works, user controller  -->
             <a href="/logout"><button class="btn btn-warning">Log-out</button></a>
