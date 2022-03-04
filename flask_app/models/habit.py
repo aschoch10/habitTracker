@@ -34,10 +34,9 @@ class Habit:
             habits.append(Habit(row))
         return habits
 
-# todo fix schema in workbench
     @classmethod
     def create(cls, data):
-        query = "INSERT into habits (users_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
+        query = "INSERT into habits (user_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
         return connectToMySQL(cls.schema).query_db(query, data)
 
 # todo add validations for form input

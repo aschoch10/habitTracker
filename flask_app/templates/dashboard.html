@@ -15,7 +15,7 @@
             <!-- this button doesn't work, is in habit controller -->
             <a href="/habits/new"><button class="btn btn-primary">New Habit</button></a>
             <!-- this button only works because test is in user controller -->
-            <a href="/test"><button class="btn btn-primary">Test</button></a>
+            <!-- <a href="/test"><button class="btn btn-primary">Test</button></a> -->
             <!-- this button works, user controller  -->
             <a href="/logout"><button class="btn btn-warning">Log-out</button></a>
 <br>
@@ -38,10 +38,7 @@
                             <td>{{habit.streak_count}}</td>
                             <td>
                                 <a href="/habits/{{   habit.id  }}"><button class="btn btn-primary">View</button></a>
-                                {%  if logged_in_user.id == habit.user.id  %}
-                                <a href="/habits/{{  habit.id  }}/edit"><button class="btn btn-warning">Edit</button></a>
-                                <a href="/habits/{{  habit.id  }}/destroy"><button class="btn btn-danger">Delete</button></a>
-                            {% endif %}
+                            
                         </td>
                     </tr>
                     {% endfor  %}
