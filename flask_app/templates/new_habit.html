@@ -18,13 +18,17 @@
             <br>
             <div class="main" style="margin-right: 35%; margin-left: 35%;">
                 <form class="form form-control" action="/habits/create" method="post" >
+                    <br>
+                
                     <input class="form-control" type="text" name="name" id="" placeholder="Name">
                     <br>
                     <input class="form-control" type="text" name="description" id="" placeholder="Description">
-                    <br>
+                    <!-- <br>
                     <input class="form-control" type="number" name="streak_count" id="" placeholder="Previous days?">
+                    <br> -->
                     <br>
                     <button class="btn btn-primary">Create</button>
+                    <p>
                 </form>
                     
             {%  with messages = get_flashed_messages()  %}

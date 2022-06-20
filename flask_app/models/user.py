@@ -7,7 +7,6 @@ from flask_app import app
 bcrypt = Bcrypt(app)
 
 class User:
-# to do create scema in mySQL workbench
     schema = ("habittracker_schema")
     def __init__(self, data):
         self.id = data['id']

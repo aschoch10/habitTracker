@@ -30,3 +30,16 @@ def createHabit():
     }
     Habit.create(data)
     return redirect('/dashboard')
+
+@app.route('/increase')
+def increase():
+    if "num" not in session:
+        session["num"] = 1
+    else:
+        session['num'] += 1
+    return redirect ("/dashboard")
+
+@app.route('/destroy')
+def destroy():
+    session.pop("num")
+    return redirect("/dashboard")

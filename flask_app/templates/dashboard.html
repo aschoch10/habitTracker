@@ -26,8 +26,9 @@
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Streak Count</th>
-                            <th>Actions</th>
+                            <th>Streak Count(from session)</th>
+                            <th>Increase</th>
+                            <th>Reset</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,9 +36,14 @@
                         <tr>
                             <td>{{habit.name}}</td>
                             <td>{{habit.description}}</td>
-                            <td>{{habit.streak_count}}</td>
-                            <td>
-                                <a href="/habits/{{   habit.id  }}"><button class="btn btn-primary">View</button></a>
+                            <!-- Need to make session streak count be saved to DB -->
+                            <!-- <td>{{habit.streak_count}}</td> -->
+                            <td>{{session['num']}}</td>
+                            <td> <a href="/increase" class="btn btn-danger">Increase one day</a></td>
+                            <td> <a href="/destroy" class="btn btn-info">Reset</a></td>
+                                
+                                <!-- If want to view ind habit -->
+                                <!-- <a href="/habits/{{   habit.id  }}"><button class="btn btn-primary">View</button></a> -->
                             
                         </td>
                     </tr>
