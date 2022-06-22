@@ -46,9 +46,6 @@ def login():
 
 
 
-# only can acces user controller from html buttons
-# to do >>fix
-
 
 
 

@@ -26,9 +26,10 @@
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Streak Count(from session)</th>
+                            <th>Streak Count</th>
                             <th>Increase</th>
-                            <th>Reset</th>
+                            <th>Delete</th>
+                            <th>last updated</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,15 +38,19 @@
                             <td>{{habit.name}}</td>
                             <td>{{habit.description}}</td>
                             <!-- Need to make session streak count be saved to DB -->
-                            <!-- <td>{{habit.streak_count}}</td> -->
-                            <td>{{session['num']}}</td>
-                            <td> <a href="/increase" class="btn btn-danger">Increase one day</a></td>
-                            <td> <a href="/destroy" class="btn btn-info">Reset</a></td>
-                                
-                                <!-- If want to view ind habit -->
-                                <!-- <a href="/habits/{{   habit.id  }}"><button class="btn btn-primary">View</button></a> -->
+                            <td>{{habit.streak_count}}</td>
                             
-                        </td>
+                            <td>
+                                <form class="" action="/habits/{{   habit.id  }}/increase" method="post" >
+                                    <input class="" type="hidden" name="name" id="{{  habit.name  }}"  value="{{  habit.name  }}">
+                                    <input class="" type="hidden" name="description" id="{{  habit.description  }}"  value="{{  habit.description  }}">
+                                    <input class="" type="hidden" name="streak_count" id="{{  habit.streak_count  }}"  value="{{  habit.streak_count  }}">
+                                    <input class="" type="hidden" name="updated_at" id="{{  habit.updated_at  }}"  value="{{  habit.updated_at  }}">
+                                    <button class="btn btn-primary">Increase!</button>
+                                </form>
+                            </td>
+                            <td> <a href="/habits/{{  habit.id  }}/destroy" class="btn btn-info">delete</a></td>
+                            <td>{{  habit.updated_at  }}</td>
                     </tr>
                     {% endfor  %}
                 </tbody>

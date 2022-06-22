@@ -38,20 +38,39 @@ class Habit:
     def create(cls, data):
         query = "INSERT into habits (user_id, name, description, streak_count) VALUES (%(user_id)s, %(name)s, %(description)s, %(streak_count)s);"
         return connectToMySQL(cls.schema).query_db(query, data)
+    
+    @classmethod
+    def readOne(cls, data):
+        query = "SELECT * from habits WHERE id = %(id)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+
+        if len(results) <1:
+            return False 
+        return cls(results[0])
+
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE habits SET name = %(name)s, description = %(description)s, streak_count = %(streak_count)s WHERE id = %(id)s;"
+        return connectToMySQL(cls.schema).query_db(query, data)
+
+
+    @classmethod
+    def destroy(cls, data):
+        query = "DELETE from habits where id = %(id)s;"
+        connectToMySQL(cls.schema).query_db(query, data)
+
 
 # todo add validations for form input
-    # @staticmethod
-    # def validate(post_data):
-    #     is_valid = True
+    @staticmethod
+    def validate(post_data):
+        is_valid = True
 
-    #     if len(post_data['title']) <3:
-    #         flash("Title must be longer than 3 characters")
-    #         is_valid = False
-    #     if len(post_data['network']) < 3:
-    #         flash("Description must be longer than 3 characters")
-    #         is_valid = False
-    #     if len(post_data['description']) <3:
-    #         flash("Instructions must be longer than 3 characters")
-    #         is_valid = False
+        if len(post_data['name']) < 3:
+            flash("Name must be longer than 3 characters")
+            is_valid = False
+        if len(post_data['description']) < 3:
+            flash("Description must be longer than 3 characters")
+            is_valid = False
+        
 
-    #     return is_valid
+        return is_valid

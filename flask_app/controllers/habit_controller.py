@@ -3,6 +3,8 @@ from flask import render_template, request, redirect, session, flash
 from flask_app import app
 from flask_app.models.user import User
 from flask_app.models.habit import Habit
+from datetime import datetime, date, timedelta
+
 
 
 @app.route('/dashboard')
@@ -31,15 +33,38 @@ def createHabit():
     Habit.create(data)
     return redirect('/dashboard')
 
-@app.route('/increase')
-def increase():
-    if "num" not in session:
-        session["num"] = 1
-    else:
-        session['num'] += 1
+
+@app.route("/habits/<int:id>/edit")
+def editShow(id):
+    return render_template("test.html", 
+    habit = Habit.readOne({"id": id})
+    )
+
+
+@app.route('/habits/<int:id>/increase', methods = ['POST'])
+def increase(id):
+    data = {
+        **request.form,
+        "updated_at":request.form['updated_at'],
+        "id":id,
+        "streak_count": int(request.form['streak_count']) +1,
+    }
+    Habit.update(data)
+    print("updated at" + data['updated_at'])
+    print(timedelta(hours=12))
+    print(datetime.now())
+    if "time" not in session:
+        session["time"] = datetime.now()
+    # if  data['updated_at'] + timedelta(hours=12) > session['time']:
+        # print("it has been more than twelve hours")
+    else: print ("it hasn't been more than twelve hours")
+        # data['streak_count']+1
+    Habit.update(data)
+
     return redirect ("/dashboard")
 
-@app.route('/destroy')
-def destroy():
-    session.pop("num")
-    return redirect("/dashboard")
+@app.route('/habits/<int:id>/destroy')
+def destroy(id):
+        session.pop("time")
+        Habit.destroy({"id": id })
+        return redirect("/dashboard")
