@@ -29,7 +29,8 @@
                             <th>Streak Count</th>
                             <th>Increase</th>
                             <th>Delete</th>
-                            <th>last updated</th>
+                            <th>Last updated</th>
+                            <th>Reset</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,8 +50,17 @@
                                     <button class="btn btn-primary">Increase!</button>
                                 </form>
                             </td>
-                            <td> <a href="/habits/{{  habit.id  }}/destroy" class="btn btn-info">delete</a></td>
-                            <td>{{  habit.updated_at  }}</td>
+                            <td> <a href="/habits/{{  habit.id  }}/destroy" class="btn btn-danger">Delete</a></td>
+                            <td>
+                                <form class="" action="/habits/{{   habit.id  }}/reset" method="post" >
+                                    <input class="" type="hidden" name="name" id="{{  habit.name  }}"  value="{{  habit.name  }}">
+                                    <input class="" type="hidden" name="description" id="{{  habit.description  }}"  value="{{  habit.description  }}">
+                                    <input class="" type="hidden" name="streak_count" id="{{  habit.streak_count  }}"  value="{{  habit.streak_count  }}">
+                                    <input class="" type="hidden" name="updated_at" id="{{  habit.updated_at  }}"  value="{{  habit.updated_at  }}">
+                                    <button class="btn btn-primary">Reset!</button>
+                                </form>
+                            </td>
+                            <td>{{  habit.updated_at.strftime("%B %d, %Y %I:%M %p")  }}</td>
                     </tr>
                     {% endfor  %}
                 </tbody>

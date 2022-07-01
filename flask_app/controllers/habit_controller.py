@@ -38,24 +38,33 @@ def createHabit():
 def increase(id):
     data = {
         **request.form,
-        "updated_at":request.form['updated_at'],
         "id":id,
-        "streak_count": int(request.form['streak_count']) +1,
     }
     # convert [updated_at] to datetime object
     # print(datetime.strptime(data['updated_at'], "%Y-%m-%d %H:%M:%S"))
-    # print(type(timedelta(hours=12)) )
+    # print(type(timedelta(hours=12)))
     # print(type(datetime.now()))
-    if(datetime.strptime(data['updated_at'], "%Y-%m-%d %H:%M:%S")) < (datetime.now()) - (timedelta(hours=12)):
-        print("it HAS been more than tweleve hours your streak has been updated")
+    if(datetime.strptime(data['updated_at'], "%Y-%m-%d %H:%M:%S")) < (datetime.now()) - (timedelta(hours=18)):
+        print("it HAS been more than twelve hours your streak has been updated")
+        data["streak_count"] +1
         Habit.update(data)
     else: print ("It hasn't been more than twelve hours")
-        # data['streak_count']+1
-
     return redirect ("/dashboard")
+
 
 @app.route('/habits/<int:id>/destroy')
 def destroy(id):
-        session.pop("time")
         Habit.destroy({"id": id })
         return redirect("/dashboard")
+
+
+@app.route('/habits/<int:id>/reset', methods = ['POST'])
+def reset(id):
+    data = {
+        **request.form,
+        "id":id,
+    }
+    data['streak_count'] = 0
+    Habit.update(data)
+    return redirect("/dashboard")
+
